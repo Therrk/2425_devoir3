@@ -1,12 +1,13 @@
 //------------------------------------------------------
 // module  : Tp-IFT2425-I.c
-// author  :Élie Leblanc 
+// author  :Élie Leblanc & Louis Malenfant-Poulin
 // date    : 
 // version : 1.0
 // language: C++
 // note    :
 //------------------------------------------------------
 //  elie.leblanc@umontreal.ca
+// louis.malenfant-poulin@umontreal.ca
 
 //------------------------------------------------
 // FICHIERS INCLUS -------------------------------
