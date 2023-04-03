@@ -1,12 +1,12 @@
 //------------------------------------------------------
 // module  : Tp-IFT2425-I.c
-// author  : 
+// author  :Ã‰lie Leblanc 
 // date    : 
 // version : 1.0
 // language: C++
 // note    :
 //------------------------------------------------------
-//  
+//  elie.leblanc@umontreal.ca
 
 //------------------------------------------------
 // FICHIERS INCLUS -------------------------------
@@ -50,7 +50,7 @@ int open_display()
 
 /************************************************************************/
 /* FABRIQUE_WINDOW()							*/
-/* Cette fonction crée une fenetre X et l'affiche à l'écran.	        */
+/* Cette fonction crï¿½e une fenetre X et l'affiche ï¿½ l'ï¿½cran.	        */
 /************************************************************************/
 Window fabrique_window(char *nom_fen,int x,int y,int width,int height,int zoom)
 {
@@ -94,7 +94,7 @@ Window fabrique_window(char *nom_fen,int x,int y,int width,int height,int zoom)
 
 /****************************************************************************/
 /* CREE_XIMAGE()							    */
-/* Crée une XImage à partir d'un tableau de float                           */
+/* Crï¿½e une XImage ï¿½ partir d'un tableau de float                           */
 /* L'image peut subir un zoom.						    */
 /****************************************************************************/
 XImage* cree_Ximage(float** mat,int z,int length,int width)
