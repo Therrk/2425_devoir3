@@ -264,7 +264,7 @@ int main(int argc,char** argv)
  zoom=-16;
 
  //Affichage Axes
- for(i=0;i<length;i++) for(j=0;j<width;j++) Graph2D[i][j]=190.0;
+ for(i=0;i<length;i++) for(j=0;j<width;j++) Graph2D[i][j]=255;
 
 
 //--------------------------------------------------------------------------------
@@ -282,10 +282,21 @@ int main(int argc,char** argv)
  if (argc>1)  { NbInt=atoi(argv[1]); }
  float* VctPts=fmatrix_allocate_1d(NbInt+1);
 
+  float x,mu, mudiff;
+  mudiff = 1.5/width;
+  mu = 2.5-mudiff;
  //Programmer ici
- 
- 
-
+  for (i = 0; i < width; i++) {
+    mu += mudiff;
+    x = 0.5;
+	  for (j = 0; j < 10000; j++) {
+	    x = mu*x*(1-x);
+    }
+    for (j = 0; j < 10000; j++) {
+	    Graph2D[4096-(int)(x*4095)][i] = 0;
+	    x = mu*x*(1-x);
+    }
+}
  //End
    
 
@@ -301,7 +312,7 @@ int main(int argc,char** argv)
  x_ppicture=cree_Ximage(Graph2D,zoom,length,width);
 
  //Sauvegarde
- //SaveImagePgm((char*)"",(char*)"Graphe",Graph2D,length,width); //Pour sauvegarder l'image
+SaveImagePgm((char*)"",(char*)"Graphe",Graph2D,length,width); //Pour sauvegarder l'image
  printf("\n\n Pour quitter,appuyer sur la barre d'espace");
  fflush(stdout);
 
