@@ -322,7 +322,7 @@ int main(int argc,char** argv)
   pos = posnext;
   leftvalue = rightvalue;
 }
- float nom=rec(VctPts,NbInt);
+ float nom=rec(VctPts,NbInt)*4;
  printf("Approximation: %.10f\n",nom);
  printf("Erreur: %.10f\n",abs(nom-PI));
 
