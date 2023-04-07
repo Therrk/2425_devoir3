@@ -244,29 +244,6 @@ void SaveImagePgm(char* bruit,char* name,float** mat,int lgth,int wdth)
 // PROGRAMME PRINCIPAL -------------------------------------
 //----------------------------------------------------------
 //----------------------------------------------------------
-
-float rec(float* mat, int length)
- {
-  if (length==1){
-    return mat[0];
-  }
-  else if (length==2){
-    return mat[0]+mat[1];
-  }
-  int l1=length/2;
-  int l2=length-l1;
-  float* mat1=new float[l1];
-  for(int i=0;i<l1;i++){
-    mat1[i]=mat[i];
-  }
-  float* mat2=new float[l2];
-  for(int i=0;i<l2;i++){
-    mat2[i]=mat[l1+i];
-  }
-  return rec(mat1,l1) + rec(mat2,l2);
- }
-
-
 int main(int argc,char** argv)
 {
  int   i,j,k,l;
@@ -283,11 +260,11 @@ int main(int argc,char** argv)
 
  length=width=4096;
  float** Graph2D=fmatrix_allocate_2d(length,width); 
- flag_graph=1;
+ flag_graph=0;
  zoom=-16;
 
  //Affichage Axes
- for(i=0;i<length;i++) for(j=0;j<width;j++) Graph2D[i][j]=190.0;
+ for(i=0;i<length;i++) for(j=0;j<width;j++) Graph2D[i][j]=255;
 
 
 //--------------------------------------------------------------------------------
@@ -305,11 +282,45 @@ int main(int argc,char** argv)
  if (argc>1)  { NbInt=atoi(argv[1]); }
  float* VctPts=fmatrix_allocate_1d(NbInt+1);
 
- 
+ { float x,mu, total, approx;
+  mu = 4;
+  x = 0;
  //Programmer ici
- 
- 
+  printf("\nApproximations float:\n");
+  for (i = 1; i <= 3; i++) {
+    x = 0.2*i;
+    total = 0;
+    printf("X initial = %.1f: ",x);
+	  for (j = 0; j < 10000000; j++) {
+	    x = mu*x*(1-x);
+	    total += sqrt(x);
+    }
+    approx = 2/(total/10000000);
+    printf("%f, erreur de %f \n",approx, abs(PI-approx));
+  }
+  }
+  double x,mu,total,approx;
+  mu = 4;
+  x = 0;
+  printf("\nApproximations double:\n");
+  for (i = 1; i <= 3; i++) {
+    x = 0.2*i;
+    total = 0;
+    printf("X initial = %.1f: ",x);
+	  for (j = 0; j < 10000000; j++) {
+	    x = mu*x*(1-x);
+	    total += sqrt(x);
+    }
+    approx = 2/(total/10000000);
+    printf("%f, erreur de %f \n",approx, abs(PI-approx));
+  }
 
+  /*
+  Après expérimentation, il semble que contrairement à ce que l'énoncé semble dire,
+  les approximations s'empirent lorsque x_0 grandit, nous n'avons pas trouvé de
+  causes à ce phénomène, donc, comme les approximations obtenues sont très bonnes,
+  nous avons décidé de laisser le devoir ainsi.  
+  */
  //End
    
 
@@ -325,7 +336,7 @@ int main(int argc,char** argv)
  x_ppicture=cree_Ximage(Graph2D,zoom,length,width);
 
  //Sauvegarde
- //SaveImagePgm((char*)"",(char*)"Graphe",Graph2D,length,width); //Pour sauvegarder l'image
+//SaveImagePgm((char*)"",(char*)"Graphe",Graph2D,length,width); //Pour sauvegarder l'image
  printf("\n\n Pour quitter,appuyer sur la barre d'espace");
  fflush(stdout);
 

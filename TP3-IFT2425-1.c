@@ -244,6 +244,29 @@ void SaveImagePgm(char* bruit,char* name,float** mat,int lgth,int wdth)
 // PROGRAMME PRINCIPAL -------------------------------------
 //----------------------------------------------------------
 //----------------------------------------------------------
+
+float rec(float* mat, int length)
+ {
+  if (length==1){
+    return mat[0];
+  }
+  else if (length==2){
+    return mat[0]+mat[1];
+  }
+  int l1=length/2;
+  int l2=length-l1;
+  float* mat1=new float[l1];
+  for(int i=0;i<l1;i++){
+    mat1[i]=mat[i];
+  }
+  float* mat2=new float[l2];
+  for(int i=0;i<l2;i++){
+    mat2[i]=mat[l1+i];
+  }
+  return rec(mat1,l1) + rec(mat2,l2);
+ }
+
+
 int main(int argc,char** argv)
 {
  int   i,j,k,l;
@@ -282,21 +305,26 @@ int main(int argc,char** argv)
  if (argc>1)  { NbInt=atoi(argv[1]); }
  float* VctPts=fmatrix_allocate_1d(NbInt+1);
 
- float rec(float* mat, int length){
-  if (length==1){
-    return mat[0]
-  }
-  else if (length==2){
-    return mat[0]+mat[1]
-  }
-  int l1=length/2
-  int l2=length-l1
-  return rec(mat[0:l1],l1) + rec(mat[l1+1:],l2)
- }
+<<<<<<< HEAD:TP3-IFT2425-I.c
+ 
+=======
+ float total, pos, posnext, h, area, leftvalue, rightvalue;
+ area = 0;
+ pos = 0;
+  leftvalue = sqrt(1-pow(pos,2));
+  h = 1/(float)NbInt;
+>>>>>>> 712e3e49ae3360a98b7fbb11063d32866126b67f:TP3-IFT2425-1.c
  //Programmer ici
- 
- 
-
+ for (i = 0; i < NbInt; i++) {
+  posnext= pos+h;
+  rightvalue = sqrt(1-pow(posnext,2));
+  area += (leftvalue+rightvalue)*(h/2);
+  pos = posnext;
+  leftvalue = rightvalue;
+}
+  area *= 4;
+  printf("Area: %.10f\n", area);
+  printf("Erreur: %.10f\n", abs(area-PI));
  //End
    
 
