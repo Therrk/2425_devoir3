@@ -317,7 +317,7 @@ int main(int argc,char** argv)
  for (i = 0; i < NbInt; i++) {
   posnext= pos+h;
   rightvalue = sqrt(1-pow(posnext,2));
-  VctPts[i] = (1-rightvalue);
+  VctPts[i] = (leftvalue+rightvalue)*(h/2);
   area += (leftvalue+rightvalue)*(h/2);
   pos = posnext;
   leftvalue = rightvalue;
@@ -330,7 +330,8 @@ int main(int argc,char** argv)
  float s=0;
  for(int i=0;i<NbInt;i++){
   float temp=s;
-  y=VctPts[i]+e;
+
+  float y=VctPts[i]+e;
   s=temp+y;
   e=temp-s+y;
 
