@@ -336,6 +336,8 @@ int main(int argc,char** argv)
   e=temp-s+y;
 
  }
+ s=s*4
+ e=e*4
  printf("Approximation: %.10f\n",s);
  printf("Erreur: %.10f\n",e);
 
