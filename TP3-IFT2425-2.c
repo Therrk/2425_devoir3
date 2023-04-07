@@ -323,8 +323,8 @@ int main(int argc,char** argv)
   leftvalue = rightvalue;
 }
  float nom=rec(VctPts,NbInt);
- print("Approximation: %.10f\n",nom);
- print("Erreur: %.10f\n",abs(nom-PI));
+ printf("Approximation: %.10f\n",nom);
+ printf("Erreur: %.10f\n",abs(nom-PI));
 
  float e=0;
  float s=0;
@@ -336,8 +336,8 @@ int main(int argc,char** argv)
   e=temp-s+y;
 
  }
- print("Approximation: %.10f\n",s);
- print("Erreur: %.10f\n",e);
+ printf("Approximation: %.10f\n",s);
+ printf("Erreur: %.10f\n",e);
 
   area *= 4;
   printf("Area: %.10f\n", area);
