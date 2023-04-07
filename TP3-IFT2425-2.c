@@ -317,7 +317,7 @@ int main(int argc,char** argv)
  for (i = 0; i < NbInt; i++) {
   posnext= pos+h;
   rightvalue = sqrt(1-pow(posnext,2));
-  VctPts[i] = rightvalue;
+  VctPts[i] = (1-rightvalue);
   area += (leftvalue+rightvalue)*(h/2);
   pos = posnext;
   leftvalue = rightvalue;
